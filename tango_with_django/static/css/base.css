@@ -1,0 +1,6 @@
+/* css for base.html */
+.container {
+    width: 960px;
+    margin: 0 auto;
+    background-color: #F8F8F8;
+}

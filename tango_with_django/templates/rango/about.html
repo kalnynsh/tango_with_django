@@ -1,0 +1,25 @@
+{% extends "rango/base.html" %}
+
+{% block title %}About Rango{% endblock title %}
+
+Current time is {% now "jS F Y H:i" %}.
+
+{% block content %}
+    {% for entry in about_entries %}
+        <h2>{{ entry.title }}</h2>
+        <p>{{ entry.body }}</p>
+    {% endfor %}
+
+
+{% lorem 2 p %}
+
+    {% comment "See year http://djbook.ru/rel1.9/ref/templates/builtins.html" %}
+        {% now "Y" as current_year %}
+        {% blocktrans %}Copyright {{ current_year }}{% endblock %}
+    {% endcomment %}
+
+<div>
+    <img src="{{ MEDIA_URL }}cat.jpg" alt="Cat">
+</div>
+
+{% endblock content %}
