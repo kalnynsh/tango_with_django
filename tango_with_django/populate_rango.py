@@ -1,6 +1,6 @@
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                        'tango_with_django.settings')
+                      'tango_with_django.settings')
 
 import django
 django.setup()
@@ -20,7 +20,7 @@ def populate():
         {"title": "How to Think like a Computer Scientist",
          "url": "http://www.greenteapress.com/thinkpython/"},
         {"title": "Learn Python in 10 Minutes",
-         "url": "http://www.korokithakis.net/tutorials/python/"},
+         "url": "https://www.stavros.io/tutorials/python/"},
     ]
 
     django_pages = [
@@ -29,19 +29,21 @@ def populate():
         {"title": "Django Rocks",
          "url": "http://www.djangorocks.com/"},
         {"title": "How tango with Django",
-         "url": "http://www.tangowithdjango.com/"}
+         "url": "http://www.tangowithdjango.com/"},
+        {"title": "Django book",
+         "url": "http://djbook.ru/"},
     ]
 
     other_pages = [
         {"title": "Bottle",
          "url": "http://bottlepy.org/docs/dev/"},
         {"title": "Flask",
-         "url": "http://flask.pocoo.org"}
+         "url": "http://flask.pocoo.org"},
     ]
 
     cats = {"Python": {"pages": python_pages},
             "Django": {"pages": django_pages},
-            "Other Frameworks": {"pages": other_pages}
+            "Other Frameworks": {"pages": other_pages},
             }
 
 # If you want to add more catergories or pages,
