@@ -24,6 +24,9 @@ def populate():
         {"title": "Learn Python in 10 Minutes",
          "url": "https://www.stavros.io/tutorials/python/",
          "views": 8},
+        {"title": "Python 3 for beginners",
+         "url": "https://pythonworld.ru/",
+         "views": 23},
     ]
 
     django_pages = [
@@ -48,6 +51,12 @@ def populate():
         {"title": "Flask",
          "url": "http://flask.pocoo.org",
          "views": 16},
+        {"title": "Regular expression blog",
+         "url": "http://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/",
+         "views": 10},
+        {"title": "Regular expression cheat sheet",
+         "url": "http://cheatography.com/davechild/cheat-sheets/regular-expressions/",
+         "views": 20},
     ]
 
     cats = {"Python": {"pages": python_pages, "views": 128, "likes": 64},
