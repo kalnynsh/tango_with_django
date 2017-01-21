@@ -3,32 +3,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rango</title>
+    <title>Rango - Add Page</title>
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <!-- JavaScript -->
     <script src="{% static 'js/jquery-3.1.1.js' %}"></script>
 </head>
 <body>
-    <h1>Add page</h1>
-    {% if category %}
+{% if category %}
+    <h1>Add page to {{ category.name }}</h1>
         <div>
             <form id="page_form" method="post" action="/rango/category/{{ category.slug }}/add_page/">
+
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
                 {% endfor %}
+
                 {% for field in form.visible_fields %}
                     {{ field.errors }}
                     {{ field.help_text }}
                     {{ field }}
                 {% endfor %}
-                <input type="submit" name="submit" value="Create Page" />
+
+                <input type="submit" name="submit" value="Add Page" />
             </form>
         </div>
-    {% else %}
+{% else %}
     <p>A category by this name does not exist.</p>
-    {% endif %}
+{% endif %}
 
 </body>
 </html>

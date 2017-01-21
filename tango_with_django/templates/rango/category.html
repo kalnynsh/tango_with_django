@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rango</title>
+    <title>Rango - Category</title>
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <!-- JavaScript -->
@@ -25,7 +25,12 @@
         {% else %}
             The specified category does not exist!
         {% endif %}
-        <a href="/rango/category/{{category.slug}}/add_page/">Add Page</a><br/>
+    </div>
+    <div>
+        {% if category %}
+                <a href="/rango/category/{{category.slug}}/add_page/">Add Page</a><br/>
+        {% endif %}
+        <a href="/rango/">Index</a><br/>
     </div>
 </body>
 </html>
