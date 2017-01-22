@@ -1,26 +1,21 @@
 {% extends "rango/base.html" %}
+{% load staticfiles %}
 
-{% block title %}About Rango{% endblock title %}
+{% block title_block %}
+    About
+{% endblock %}
 
-Current time is {% now "jS F Y H:i" %}.
+{% block body_block %}
+    {% block content %}
 
-{% block content %}
-    {% for entry in about_entries %}
-        <h2>{{ entry.title }}</h2>
-        <p>{{ entry.body }}</p>
-    {% endfor %}
+            <h2>{{ title }}</h2>
+            <p>{{ body }}</p>
 
+    {% endblock content %}
 
-{% lorem 2 p %}
+    <div>
+        <img src="{{ MEDIA_URL }}cat.jpg" alt="Cat">
+        <p>This tutorial has been put together by Kalnynsh D.</p>
+    </div>
 
-    {% comment "See year http://djbook.ru/rel1.9/ref/templates/builtins.html" %}
-        {% now "Y" as current_year %}
-        {% blocktrans %}Copyright {{ current_year }}{% endblock %}
-    {% endcomment %}
-
-<div>
-    <img src="{{ MEDIA_URL }}cat.jpg" alt="Cat">
-</div>
-<p>This tutorial has been put together by Kalnynsh D.</p>
-
-{% endblock content %}
+{% endblock body_block %}

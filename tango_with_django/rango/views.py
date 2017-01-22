@@ -25,7 +25,7 @@ def index(request):
 
 
 def about(request):
-    context_dict = {'about_entries': {'title': 'About Rango', 'body': 'Rango is the cartoon person.'}}
+    context_dict = {'title': 'About Rango', 'body': 'Rango is the cartoon person.'}
     return render(request, 'rango/about.html', context=context_dict)
 
 

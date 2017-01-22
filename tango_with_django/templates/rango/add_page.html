@@ -1,19 +1,15 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rango - Add Page</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <!-- JavaScript -->
-    <script src="{% static 'js/jquery-3.1.1.js' %}"></script>
-</head>
-<body>
+
+{% block title_block %}
+    add a Page
+{% endblock %}
+
+{% block body_bock %}
 {% if category %}
     <h1>Add page to {{ category.name }}</h1>
         <div>
-            <form id="page_form" method="post" action="/rango/category/{{ category.slug }}/add_page/">
+            <form id="page_form" method="post" action="{% url 'rango:add_page' category.slug %}">
 
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
@@ -33,5 +29,4 @@
     <p>A category by this name does not exist.</p>
 {% endif %}
 
-</body>
-</html>
+{% endblock body_block %}
