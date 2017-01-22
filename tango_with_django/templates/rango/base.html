@@ -3,22 +3,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>
+        Rango -
+        {% block title_block %}
+        How to Tango with Django!
+        {% endblock %}
+    </title>
+    <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>{% block title %}Tango with django{% endblock title %}</title>
+    <!-- JavaScript -->
+    <script src="{% static 'js/jquery-3.1.1.js' %}"></script>
 </head>
-<body>
-    <div class="container">
-        <div class="sidebar">
-            {% block sidebar %}
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-            {% endblock sidebar %}
-        </div>
+<body class="container">
 
-        <div class="content">
-            {% block content %}{% endblock content %}
-        </div>
-    </div>
+<div>
+    {% block body_block %}
+    {% endblock body_block %}
+</div>
+<hr/>
+
+<div>
+    <ul>
+        <li><a href="{% url 'add_category' %}">Add New Category</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'index' %}">Index</a></li>
+    </ul>
+</div>
+
 </body>
+</html>
