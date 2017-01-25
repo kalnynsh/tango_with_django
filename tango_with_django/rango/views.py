@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm
+from django.urls import reverse
 
 
 def index(request):
@@ -25,6 +26,10 @@ def index(request):
 
 
 def about(request):
+    # print out whether the method is a GET or a POST
+    print(request.method)
+    # print out the user name, if no one is logged in it prints 'AnonymousUser'
+    print(request.user)
     context_dict = {'title': 'About Rango', 'body': 'Rango is the cartoon person.'}
     return render(request, 'rango/about.html', context=context_dict)
 
