@@ -128,13 +128,13 @@ def register(request):
 
     # If it's a HTTP POST, we're interested in processing form data.
     if request.method == 'POST':
-        # Attempt to grab information from teh raw form information.
+        # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
 
         # If the two form are valid
-        if user_form.is_valid() and profile_form.is_valid()
+        if user_form.is_valid() and profile_form.is_valid():
             # Save the user's form data to the database
             user = user_form.save()
 
@@ -151,7 +151,7 @@ def register(request):
             profile.user = user
 
             # Did the user provide a profile picture?
-            # If so, we need to get it from the input from and
+            # If so, we need to get it from the input form and
             # put it in the UserProfile model.
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
