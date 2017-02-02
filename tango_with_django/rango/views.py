@@ -4,6 +4,7 @@ from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -198,14 +199,14 @@ def user_login(request):
 
         # Use Django's machinery to attempt to see if the username/password
         # combination is valid - a User object is returned if it is.
-        user = authenticate(username=username, passwors=password)
+        user = authenticate(username=username, password=password)
 
         # If we have a User object, the details are correct.
         # If None (Python's way of representing the absence of value), no user
         # with matching credentials was found.
         if user:
             # Is the account active? It could have been disabled.
-            if user.active:
+            if user.is_active:
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
@@ -224,3 +225,8 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object.
         return render(request, 'rango/login.html', {})
+
+
+@login_required
+def restricted(request):
+    return HttpResponse("Since you're logged in, you can see this text!")
