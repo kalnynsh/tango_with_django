@@ -16,6 +16,8 @@ def index(request):
     # Place the list in our context_dict dictionary
     # that will be passed to the template engine.
 
+    request.session.set_test_cookie()
+
     category_list = Category.objects.order_by('-likes')[:5]
     context_dict = {'categories': category_list}
 
@@ -29,6 +31,10 @@ def index(request):
 
 
 def about(request):
+    if request.session.test_cookie_worked():
+        print("TEST COOKIE WORKED!")
+        request.session.delete_test_cookie()
+
     # print out whether the method is a GET or a POST
     print(request.method)
     # print out the user name, if no one is logged in it prints 'AnonymousUser'
