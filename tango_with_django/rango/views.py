@@ -22,13 +22,10 @@ def index(request):
     context_dict = {'categories': category_list,
                     'pages': pages_list, }
 
-    # Obtain our Response object early so we can add cookie information.
+    visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
+
     response = render(request, 'rango/index.html', context=context_dict)
-
-    # Call function to handle the cookies
-    visitor_cookie_handler(request, response)
-
-    # Return response back to the user, updating any cookies that need changed.
     return response
 
 
