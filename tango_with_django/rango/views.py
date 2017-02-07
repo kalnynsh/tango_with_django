@@ -131,6 +131,7 @@ def add_page(request, category_name_slug):
     return render(request, 'rango/add_page.html', context_dict)
 
 
+# Using - registration.backends.simple.urls
 # def register(request):
 #     # A boolean value for telling the template
 #     # whether the registration was successful.
@@ -240,6 +241,7 @@ def restricted(request):
     return render(request, 'rango/restricted.html', {})
 
 
+# Using - registration.backends.simple.urls
 # Use the login_require() decorator to ensure only those logged in can access the view
 # @login_required
 # def user_logout(request):
