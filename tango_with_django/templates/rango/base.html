@@ -25,8 +25,8 @@
           <!--rel="stylesheet">-->
     <link href="{% static 'css/dashboard.css' %}"
           rel="stylesheet">
-
 </head>
+
 <body>
 <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
     <button type="button" class="navbar-toggler hidden-sm-up"
@@ -40,12 +40,12 @@
     <a class="navbar-brand" href="#">Rango</a>
     <div id="navbar">
         <nav class="nav navbar-nav pull-xs-left">
-            <a class="nav-item nav-link" href="{% url 'index' %}">Home</a>
-            <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
-            <a class="nav-item nav-link" href="{% url 'search' %}">Search</a>
+            <a class="nav-item nav-link" href="{% url 'rango:index' %}">Home</a>
+            <a class="nav-item nav-link" href="{% url 'rango:about' %}">About</a>
+            <!--<a class="nav-item nav-link" href="{% url 'search' %}">Search</a>-->
             {% if user.is_authenticated %}
             <a class="nav-item nav-link"
-               href="{% url 'add_category' %}">
+               href="{% url 'rango:add_category' %}">
                 Add a New Category
             </a>
             <a class="nav-item nav-link"
