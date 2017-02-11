@@ -1,14 +1,25 @@
 {% extends "rango/base.html" %}
+{% load staticfiles %}
 {% block body_block %}
-    <h1>Login</h1>
-    <form method="post" action=".">
+<link rel="stylesheet" href="{% static 'css/signin.css' %}">
+<div class="container">
+    <div class="jumbotron">
+        <h3 class="display-3">Login</h3>
+    </div>
+    <form class="form-signin" role="form" method="post" action=".">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Log in" />
+        <h2 class="form-singin-heading">Please sign in</h2>
+        <label for="id_username" class="sr-only">Username</label>
+        <input type="text" id="id_username" class="form-control" name="username"
+               placeholder="Username" required autofocus>
+        <label for="id_password" class="sr-only">Password</label>
+        <input type="password" id="id_password" class="form-control" name="password"
+               placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"
+                value="Submit">Sing in</button>
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
-    <p>
-        Not a member?
-        <a href="{% url 'registration_register' %}">Register</a>
-    </p>
+
+    <p>Not a member? <a href="{% url 'registration_register' %}">Register</a>!</p>
+</div>
 {% endblock %}
