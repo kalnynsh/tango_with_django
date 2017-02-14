@@ -7,8 +7,8 @@
 
 {% block body_block %}
 <form id="category_form" method="post"
-      action="{% url 'rango:add_category' %}"\>
-    <h2 class="form-signin-heading"\>
+      action="{% url 'rango:add_category' %}">
+    <h2 class="form-signin-heading">
         Add a Category
     </h2>
     {% csrf_token %}
@@ -24,7 +24,7 @@
     <!--{% endfor %}-->
     <br/>
     <button class="btn btn-primary"
-            type="submit" name="submit"\>
+            type="submit" name="submit">
          Add Category
     </button>
 </form>
