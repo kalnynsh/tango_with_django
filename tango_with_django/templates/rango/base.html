@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{lang="html",linenos=off}<!DOCTYPE html>
 {% load staticfiles %}
 {% load rango_template_tags %}
 <html lang="en">
@@ -31,13 +31,13 @@
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
     <button class="navbar-toggler navbar-toggler-right hidden-lg-up"
             type="button" data-toggle="collapse"
-            data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault"
+            data-target="#navbar"
+            aria-controls="navbar"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="{% url 'rango:index' %}">Rango</a>
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="collapse navbar-collapse" id="navbar">
        <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'rango:index' %}">Home
@@ -88,7 +88,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script
-        src="{% static 'js/jquery.min-3.1.1.js' %}">
+        src="{% static 'js/jquery.min-2.1.4.js' %}">
         // src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
        // src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> Source
 </script>
