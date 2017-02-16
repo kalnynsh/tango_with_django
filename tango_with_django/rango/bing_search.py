@@ -1,5 +1,6 @@
 import json
-import urllib
+import urllib.request
+import urllib.parse
 
 
 def read_bing_key():
@@ -13,7 +14,7 @@ def read_bing_key():
         with open('bing.key', 'r') as f:
             bing_api_key = f.readline()
     except:
-        raise IOError('bing_api_key not found')
+        raise IOError('bing.key not found')
     return bing_api_key
 
 
@@ -26,17 +27,17 @@ def run_query(search_terms):
     if not bing_api_key:
         raise KeyError("Bing Key Not Found")
 
-    # Spesify the base url and the service (/bing/v5.0/search)
+    # Spesify the base url (/bing/v5.0/search)
     root_url = 'https://api.cognitive.microsoft.com/bing/v5.0/search'
-    service = 'Web'
+    # service = 'Web' Not use in v.5.0
 
     # Specify how many results we wish to be returned per page.
     # Offset specifies where in the results list to start from.
     # With results_per_page = 10 and offset = 11,
     # this would start from page 2.
     results_per_page = 10
-    offset = 11
-    mkt = 'ru-RU'
+    offset = 0
+    mkt = 'ru-RU'  # market place Russia
     safesearch = 'Moderate'
 
     # Wrap quotes around our query terms as required by the Bing API.
@@ -48,7 +49,7 @@ def run_query(search_terms):
     query = urllib.parse.quote(query)
 
     # Construct the latter part of our request's URL.
-    # Sets the format of the response to JSON  and set other properties.
+    # Sets the format of the response to JSON and set other properties.
     search_url = "{0}?$format=json&$count={1}&$offset={2}" \
                  "&mkt={3}&safesearch={4}&q={5}".format(
                     root_url,
@@ -58,7 +59,7 @@ def run_query(search_terms):
                     safesearch,
                     query, )
 
-    # Setup authentication with the Bing servers
+    # Setup authentication with the Bing servers.
     # The username MUST be a blank string, and put in your API key!
     username = ''
 
@@ -68,7 +69,7 @@ def run_query(search_terms):
     password_mgr.add_password(None, search_url, username, bing_api_key)
 
     # Create our results list which we'll populate.
-    result = []
+    results = []
 
     try:
         # Prepare for connecting to Bing's servers.
@@ -93,3 +94,17 @@ def run_query(search_terms):
 
         # Return the list of results to the calling function.
     return results
+
+
+def main():
+    query = input("Enter a query:")
+    results = run_query(query)
+    for result in results:
+        print(result['title'])
+        print('-' * len(result['title']))
+        print(result['summary'])
+        print(result['link'])
+        print()
+
+if __name__ == '__main__':
+    main()
