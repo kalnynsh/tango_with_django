@@ -38,37 +38,40 @@
     </button>
     <a class="navbar-brand" href="{% url 'rango:index' %}">Rango</a>
     <div class="collapse navbar-collapse" id="navbar">
-       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="{% url 'rango:index' %}">Home
-                <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'rango:about' %}">About</a>
-        </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link"
-               href="{% url 'rango:add_category' %}">
-                Add a New Category
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link"
-               href="{% url 'auth_logout' %}?next=/rango/">
-                Logout
-            </a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-            <a class="nav-link"
-               href="{% url 'registration_register' %}">Register Here</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link"
-               href="{% url 'auth_login' %}">Login</a>
-        </li>
-        {% endif %}
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'rango:index' %}">Home
+                    <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'rango:about' %}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'rango:search' %}">Search</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="{% url 'rango:add_category' %}">
+                    Add a New Category
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="{% url 'auth_logout' %}?next=/rango/">
+                    Logout
+                </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="{% url 'registration_register' %}">Register Here</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="{% url 'auth_login' %}">Login</a>
+            </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
@@ -76,8 +79,19 @@
     <div class="row">
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
             {% block sidebar_block %}
-                {% get_category_list category %}
+            {% get_category_list category %}
             {% endblock %}
+            <!--<ul class="nav nav-pills flex-column">-->
+                <!--<li class="nav-item">Type to find a category</li>-->
+                <!--<from>-->
+                    <!--<li class="nav-item">-->
+                        <!--<input class="search-query form-control" type="text"-->
+                               <!--name="suggestion" value="" id="suggestion" />-->
+                    <!--</li>-->
+                <!--</from>-->
+            <!--</ul>-->
+            <!--<hr/>-->
+            <!--<div id="cats"></div>-->
         </nav>
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             {% block body_block %}{% endblock %}

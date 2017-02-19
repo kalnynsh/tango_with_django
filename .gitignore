@@ -1,14 +1,6 @@
 # Будет удалено
-.idea/dictionaries/
-.idea/inspectionProfiles/
-.idea/misc.xml
-.idea/modules.xml
-.idea/project_tango.iml
-.idea/workspace.xml
+.idea/
 log/
-
-/tango_with_django/tango_with_django/bing.key
-
+*.key
 material/
 
-*.key
