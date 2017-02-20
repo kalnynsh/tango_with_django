@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
-from rango.bing_search import run_query
+from rango.bing_search import run_query_bing
+from rango.webhose_search import run_query as run_query_webhose
 # from django.contrib.auth import authenticate, login, logout
 # from django.http import HttpResponseRedirect, HttpResponse
 # from django.core.urlresolvers import reverse
@@ -291,7 +292,8 @@ def search(request):
     if request.method == 'POST':
         query = request.POST['query'].strip()
         if query:
-            # Run our Bing function to get the results list!
-            result_list = run_query(query)
+            # Run our Bing or Webhose function to get the results list!
+            # result_list = run_query_bing(query)
+            result_list = run_query_webhose(query)
 
     return render(request, 'rango/search.html', {'result_list': result_list, })

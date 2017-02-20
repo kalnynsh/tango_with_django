@@ -74,7 +74,7 @@ def run_query(search_term, size=10):
         for post in json_response['posts']:
             results.append({'title': post['title'],
                             'link': post['url'],
-                            'summery': post['text'][:200]})
+                            'summary': post['text'][:200]})
     except:
         print("Error when querying the Webhose API")
 
@@ -88,7 +88,7 @@ def main():
     for result in results:
         print('-' * len(result['title']))
         print(result['title'])
-        print(result['summery'])
+        print(result['summary'])
         print(result['link'])
         print()
 
