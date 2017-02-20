@@ -1,6 +1,7 @@
 import json
 import urllib.parse
 import urllib.request
+import os.path
 
 
 def read_web_key():
@@ -10,9 +11,19 @@ def read_web_key():
     Remember: put search.key in your .gitirnor file to avoid committing it!
     """
     webhose_api_key = None
+    file_search_key = 'search.key'
+
+    # Find abs path to file_search_key
+    abspath_file_search_key = os.path.abspath(file_search_key)
+
+    # Check out isfile exist
+    if not os.path.isfile(abspath_file_search_key):
+        # ../ go up stair
+        abspath_updir_search_key = os.path.dirname(os.path.dirname(abspath_file_search_key))
+        abspath_file_search_key = os.path.join(abspath_updir_search_key, file_search_key)
 
     try:
-        with open('search.key', 'r') as f:
+        with open(abspath_file_search_key, 'r') as f:
             webhose_api_key = f.readline().strip()
     except:
         raise IOError('search.key file not found')
@@ -68,4 +79,18 @@ def run_query(search_term, size=10):
         print("Error when querying the Webhose API")
 
     # Return the list of results to the calling function.
-     return results
+    return results
+
+
+def main():
+    query = input("Enter a query: ")
+    results = run_query(query)
+    for result in results:
+        print('-' * len(result['title']))
+        print(result['title'])
+        print(result['summery'])
+        print(result['link'])
+        print()
+
+if __name__ == '__main__':
+    main()
