@@ -1,13 +1,16 @@
 from django.shortcuts import render
+from django.shortcuts import reverse
+from django.shortcuts import redirect
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
-from rango.bing_search import run_query_bing
-from rango.webhose_search import run_query as run_query_webhose
-# from django.contrib.auth import authenticate, login, logout
-# from django.http import HttpResponseRedirect, HttpResponse
-# from django.core.urlresolvers import reverse
+from rango.bing_search import run_query as run_query_bing
+# from rango.webhose_search import run_query as run_query_webhose
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+# from django.contrib.auth import authenticate, login, logout
+# from django.http import HttpResponseRedirect
+# from django.core.urlresolvers import reverse
 
 
 def index(request):
@@ -291,9 +294,27 @@ def search(request):
     result_list = []
     if request.method == 'POST':
         query = request.POST['query'].strip()
+        # query_placeholder = query
         if query:
-            # Run our Bing or Webhose function to get the results list!
-            # result_list = run_query_bing(query)
-            result_list = run_query_webhose(query)
+            # Run our Bing (90 d free) or Webhose (free) function to get the results list!
+            result_list = run_query_bing(query)
+            # result_list = run_query_webhose(query)
 
     return render(request, 'rango/search.html', {'result_list': result_list, })
+
+
+def track_url(request):
+    page_id = None
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+    if page_id:
+        try:
+            page = Page.objects.get(id=page_id)
+            page.views += 1  # page.views = page.views + 1
+            page.save()
+            return redirect(page.url)
+        except:
+            return HttpResponse("Page id {0} not found".format(page_id))
+    print("No page_id in get string")
+    return redirect(reverse('index'))

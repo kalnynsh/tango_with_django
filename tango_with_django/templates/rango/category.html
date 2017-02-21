@@ -8,18 +8,24 @@
 {% block body_block %}
     {% if category %}
         <h1>{{ category.name }}</h1>
-
+        <div id="pages">
         {% if pages %}
             <ul>
                 {% for page in pages %}
-                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                    <li><a href="{% url 'rango:goto' %}?page_id={{page.id}}">
+                        {{ page.title }}</a>
+                        <span class="tag tag-pill tag-primary">
+                            {{ page.views }}
+                        </span>
+                    </li>
                 {% endfor %}
             </ul>
         {% else %}
             <strong>No pages currently in category.</strong>
         {% endif %}
+        </div>
         <a href="{% url 'rango:add_page' category.slug %}">Add a Page</a>
     {% else %}
         The specified category does not exist!
     {% endif %}
-{% endblock %}
+{% endblock %}+

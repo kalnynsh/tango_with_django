@@ -12,7 +12,7 @@
         {% csrf_token %}
         <div class="form-group">
             <input class="form-control" type="text" size="50"
-                   name="query" value="" id="query" />
+                   name="query" value="" id="query"/>
         </div>
         <button class="btn btn-primary" type="submit" name="submit"
             value="Search">Search
@@ -27,9 +27,9 @@
             {% for result in result_list %}
                 <div class="list-group-item">
                     <h4 class="list-group-item-heading">
-                        <a href="{{ result.link }}">{{ result.title }}</a>
+                        <a href="{{ result.link }}" target="_blank">{{ result.title }}</a>
                     </h4>
-                    <p class="list-group-item-text">{{ result.summery }}</p>
+                    <p class="list-group-item-text">{{ result.summary }}</p>
                 </div>
             {% endfor %}
         </div>
