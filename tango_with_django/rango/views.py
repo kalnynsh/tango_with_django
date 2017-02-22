@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from registration.backends.simple.views import RegistrationView
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 # from django.contrib.auth import authenticate, login, logout
 # from django.http import HttpResponseRedirect
 # from django.core.urlresolvers import reverse
@@ -356,3 +356,26 @@ def register_profile(request):
 class RangoResistrationView(RegistrationView):
     def get_success_url(self, user=None):
         return reverse('register_profile')
+
+
+@login_required
+def profile(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return redirect('index')
+
+    userprofile = UserProfile.objects.get_or_create(user=user)[0]
+    form = UserProfileForm({'website': userprofile.website,
+                            'picture': userprofile.picture})
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('profile', user.username)
+        else:
+            print(form.errors)
+
+    return render(request, 'rango/profile.html', {'userprofile': userprofile,
+                                                  'selecteduser': user, 'form': form, })
