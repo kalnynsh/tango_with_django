@@ -22,11 +22,11 @@ from rango import views
 from registration.backends.simple.views import RegistrationView
 
 
-# Create a new class that redirects the user to the index page,
+# Create a new class that redirects the user to the add profile,
 # if successful at logging
-class MyRegistrationView(RegistrationView):
-    def get_success_url(self, user=None):
-        return '/rango/'
+# class MyRegistrationView(RegistrationView):
+#     def get_success_url(self, user=None):
+#         return '/rango/add_profile/'
 
 
 urlpatterns = [
@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^rango/', include('rango.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/register/$',
-        MyRegistrationView.as_view(),
+        views.RangoRegistrationView.as_view(),
         name='registration_register'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^accounts/password/', include('registration.backends.simple.urls')),

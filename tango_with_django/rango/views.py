@@ -1,17 +1,19 @@
 from django.shortcuts import render
 from django.shortcuts import reverse
 from django.shortcuts import redirect
-from rango.models import Category, Page
-from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
+from rango.models import Category, Page, UserProfile
+from rango.forms import CategoryForm, PageForm, UserProfileForm
 from rango.bing_search import run_query as run_query_bing
 # from rango.webhose_search import run_query as run_query_webhose
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from registration.backends.simple.views import RegistrationView
+# from django.contrib.auth.models import User
 # from django.contrib.auth import authenticate, login, logout
 # from django.http import HttpResponseRedirect
 # from django.core.urlresolvers import reverse
+
 
 
 def index(request):
@@ -349,6 +351,8 @@ def register_profile(request):
     return render(request, 'rango/profile_registration.html', context_dict)
 
 
+# Create a new class that redirects the user to the register profile,
+# if successful at logging
 class RangoResistrationView(RegistrationView):
-    def get_success_url(self, user):
+    def get_success_url(self, user=None):
         return reverse('register_profile')
