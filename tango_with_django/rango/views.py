@@ -353,9 +353,9 @@ def register_profile(request):
 
 # Create a new class that redirects the user to the register profile,
 # if successful at logging
-class RangoResistrationView(RegistrationView):
+class RangoRegistrationView(RegistrationView):
     def get_success_url(self, user=None):
-        return reverse('register_profile')
+        return reverse('rango:register_profile')
 
 
 @login_required
@@ -373,7 +373,7 @@ def profile(request, username):
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
         if form.is_valid():
             form.save(commit=True)
-            return redirect('profile', user.username)
+            return redirect('rango:profile', user.username)
         else:
             print(form.errors)
 

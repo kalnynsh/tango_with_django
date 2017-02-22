@@ -20,7 +20,7 @@
                     <img src="http://lorempixel.com/64/64/people/" alt="people">
                     {% endif %}
                     <h4 class="list-group-item-heading">
-                        <a href="{% url 'profile' listuser.user.username %}">{{ listuser.user.username }}</a>
+                        <a href="{% url 'rango:profile' listuser.user.username %}">{{ listuser.user.username }}</a>
                     </h4>
                 </div>
                 {% endfor %}
