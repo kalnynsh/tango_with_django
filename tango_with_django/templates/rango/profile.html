@@ -15,8 +15,8 @@
     <img src="http://lorempixel.com/300/300/people/" width="300" height="300" alt="{{ user.username }}">
     {% endif %}
     <br><br>
-    <div class="profile_data">
-        {% if selecteduser.username == username %}
+    <div id="profile_data">
+        {% if selecteduser.username == user.username %}
         <form method="post" action="." enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}

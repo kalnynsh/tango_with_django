@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import reverse
 from django.shortcuts import redirect
 from rango.models import Category, Page, UserProfile
-from rango.forms import CategoryForm, PageForm, UserProfileForm
+from rango.forms import CategoryForm, PageForm
+from rango.forms import UserForm, UserProfileForm
 from rango.bing_search import run_query as run_query_bing
 # from rango.webhose_search import run_query as run_query_webhose
 from django.http import HttpResponse
