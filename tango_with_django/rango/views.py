@@ -84,7 +84,7 @@ def show_category(request, category_name_slug):
 
     # Create a default query based on the category name
     # to be shown in the search box
-    context_dict['query'] = ''
+    context_dict['query'] = category.name
 
     result_list = []
     if request.method == 'POST':
