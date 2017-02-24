@@ -73,15 +73,17 @@ def show_category(request, category_name_slug):
         # We'll use this in the template to verify that the category exists.
 
         context_dict['category'] = category
-        # Create a default query based on the category name
-        # to be shown in the search box
-        context_dict['query'] = category.name
+
     except Category.DoesNotExist:
         # We get here if we didn't find the specified category.
         # Don't do anything -
         # the template will display the "no category" message for us.
         context_dict['category'] = None
         context_dict['pages'] = None
+
+    # Create a default query based on the category name
+    # to be shown in the search box
+    context_dict['query'] = ''
 
     result_list = []
     if request.method == 'POST':

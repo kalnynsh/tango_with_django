@@ -13,7 +13,7 @@
             {% if pages %}
                 <ul>
                     {% for page in pages %}
-                        <li><a href="{% url 'rango:goto' %}?page_id={{page.id}}">
+                        <li><a href="{% url 'rango:goto' %}?page_id={{page.id}}" target="_blank">
                             {{ page.title }}</a>
                             <span class="tag tag-pill tag-primary">
                                 {{ page.views }}
