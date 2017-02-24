@@ -15,7 +15,7 @@
                     {% for page in pages %}
                         <li><a href="{% url 'rango:goto' %}?page_id={{page.id}}" target="_blank">
                             {{ page.title }}</a>
-                            <span class="tag tag-pill tag-primary">
+                            <span class="badge badge-info">
                                 {{ page.views }}
                             </span>
                         </li>

@@ -28,7 +28,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+<nav class="navbar navbar-toggleable-md navbar-light fixed-top" style="background-color: #e3f2fd;">
     <button class="navbar-toggler navbar-toggler-right hidden-lg-up"
             type="button" data-toggle="collapse"
             data-target="#navbar"
@@ -107,13 +107,16 @@
         </main>
     </div>
 </div>
-<!-- Bootstrap core JavaScript
+<!-- jQuery first, then Tether, then Bootstrap JS.
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script
         src="{% static 'js/jquery.min-3.0.0.js' %}">
         // src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
        // src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> Source
+</script>
+<script src="{% static 'js/tether.min.js' %}">
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous">-->
 </script>
 <script
         src="{% static 'js/bootstrap.min.js' %}">
