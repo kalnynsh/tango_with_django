@@ -116,7 +116,7 @@ def show_category(request, category_name_slug):
 
     # Create a default query based on the category name
     # to be shown in the search box
-    context_dict['query'] = category.name
+    # context_dict['query'] = category.name
 
     result_list = []
     if request.method == 'POST':
@@ -125,7 +125,7 @@ def show_category(request, category_name_slug):
             # Run our Webhose (Bing) function to get the results list!
             result_list = run_query_bing(query)
             # result_list = run_query_webhose(query)
-            context_dict['query'] = query
+            # context_dict['query'] = query
     context_dict['result_list'] = result_list
 
     # Go render the response and return it to the client.
