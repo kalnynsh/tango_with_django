@@ -116,7 +116,7 @@ def show_category(request, category_name_slug):
 
     # Create a default query based on the category name
     # to be shown in the search box
-    # context_dict['query'] = category.name
+    context_dict['query'] = category.name
 
     result_list = []
     if request.method == 'POST':
@@ -125,7 +125,7 @@ def show_category(request, category_name_slug):
             # Run our Webhose (Bing) function to get the results list!
             result_list = run_query_bing(query)
             # result_list = run_query_webhose(query)
-            # context_dict['query'] = query
+            context_dict['query'] = query
     context_dict['result_list'] = result_list
 
     # Go render the response and return it to the client.
@@ -188,7 +188,6 @@ def search(request):
     result_list = []
     if request.method == 'POST':
         query = request.POST['query'].strip()
-        # query_placeholder = query
         if query:
             # Run our Bing (90 d free) or Webhose (free) function to get the results list!
             result_list = run_query_bing(query)
@@ -389,3 +388,19 @@ def profile(request, username):
 def list_profiles(request):
     userprofile_list = UserProfile.objects.all()
     return render(request, 'rango/list_profiles.html', {'userprofile_list': userprofile_list, })
+
+
+@login_required
+def like_category(request):
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['category_id']
+        likes = 0
+        if cat_id:
+            cat = Category.objects.get(id=int(cat_id))
+            if cat:
+                likes = cat.likes + 1
+                cat.likes = likes
+                cat.save()
+        return HttpResponse(likes)
+
