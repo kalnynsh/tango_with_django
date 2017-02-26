@@ -66,6 +66,7 @@
                     </h4>
                     <p class="list-group-item-text">{{ result.summary }}</p>
                     {% if user.is_authenticated %}
+                    <br>
                     <button data-catid="{{ category.id }}"
                             data-title="{{ result.title }}"
                             data-url="{{ result.link }}"
